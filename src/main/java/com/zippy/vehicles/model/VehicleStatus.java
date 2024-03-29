@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable
 @Table(name = "vehicle_status")
 public class VehicleStatus {
     @Id

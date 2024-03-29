@@ -1,4 +1,5 @@
 package com.zippy.vehicles.mappers;
+
 import com.zippy.vehicles.dto.VehicleDTO;
 import com.zippy.vehicles.model.Vehicle;
 import org.mapstruct.Mapper;
@@ -8,6 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface VehicleMapper {
   VehicleMapper INSTANCE = Mappers.getMapper(VehicleMapper.class);
+
   @Mapping(target = "id", source = "id")
   @Mapping(target = "type", source = "vehicleType.name")
   @Mapping(target = "status", source = "vehicleStatus.name")

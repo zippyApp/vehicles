@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="vehicle")
+@Table(name = "vehicle")
 public class Vehicle {
 
   @Id
@@ -30,7 +30,7 @@ public class Vehicle {
   @Column(name = "electric")
   private boolean electric;
 
-  @Column(name = "battery")// rename to battery_level
+  @Column(name = "battery")
   private int batteryLevel;
 
   @Column(name = "station_id")

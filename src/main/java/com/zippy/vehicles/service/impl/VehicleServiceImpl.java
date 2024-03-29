@@ -1,41 +1,77 @@
 package com.zippy.vehicles.service.impl;
 
 import com.zippy.vehicles.service.interfaces.IVehicleService;
-import com.zippy.vehicles.repository.IVehiclesRepository;
+
+import com.zippy.vehicles.repository.IVehicleRepository;
 import java.util.List;
-import com.zippy.vehicles.dto.VehicleDTO;
-import com.zippy.vehicles.mappers.VehicleMapper;
+import com.zippy.vehicles.model.Vehicle;
+import com.zippy.vehicles.model.VehicleStatus;
+
+import com.zippy.vehicles.service.interfaces.IVehicleStatusService;
+
 import org.springframework.stereotype.Service;
+import jakarta.annotation.Nonnull;
 
 @Service
-public class VehicleServiceImpl implements IVehicleService{
-  private final IVehiclesRepository vehicleRepository;
+public class VehicleServiceImpl implements IVehicleService {
+  private final IVehicleRepository vehicleRepository;
+  private final IVehicleStatusService vehicleStatusService;
 
-  public VehicleServiceImpl(IVehiclesRepository vehicleRepository){
+  public VehicleServiceImpl(IVehicleRepository vehicleRepository, IVehicleStatusService vehicleStatusService) {
     this.vehicleRepository = vehicleRepository;
+    this.vehicleStatusService = vehicleStatusService;
   }
 
-  public List<VehicleDTO> findAll(){
-    return vehicleRepository.findAll().stream().map(VehicleMapper.INSTANCE::vehicleToVehicleDTO).toList();
+  public List<Vehicle> findAll() {
+    return vehicleRepository.findAll();
   }
 
-  public VehicleDTO findById(Long id){
-    return VehicleMapper.INSTANCE.vehicleToVehicleDTO(vehicleRepository.findById(id).orElse(null));
+  public Vehicle findById(@Nonnull Long id) {
+    return vehicleRepository.findById(id).orElse(null);
   }
 
-  public List<VehicleDTO> findByStationId(Long stationId){
-    return vehicleRepository.findByStationId(stationId).stream().map(VehicleMapper.INSTANCE::vehicleToVehicleDTO).toList();
+  public List<Vehicle> findByStationId(Long stationId) {
+    return vehicleRepository.findByStationId(stationId);
   }
 
-  public List<VehicleDTO> findByVehicleStatusName(String name){
-    return vehicleRepository.findByVehicleStatusName(name).stream().map(VehicleMapper.INSTANCE::vehicleToVehicleDTO).toList();
+  public List<Vehicle> findByVehicleStatusName(String name) {
+    return vehicleRepository.findByVehicleStatusName(name);
   }
 
-  public List<VehicleDTO> findByVehicleTypeName(String name){
-    return vehicleRepository.findByVehicleTypeName(name).stream().map(VehicleMapper.INSTANCE::vehicleToVehicleDTO).toList();
+  public List<Vehicle> findByVehicleTypeName(String name) {
+    return vehicleRepository.findByVehicleTypeName(name);
   }
 
-  public List<VehicleDTO> findByVehicleStatusNameAndStationId(String name, Long stationId){
-    return vehicleRepository.findByVehicleStatusNameAndStationId(name, stationId).stream().map(VehicleMapper.INSTANCE::vehicleToVehicleDTO).toList();
+  public List<Vehicle> findByVehicleStationIdAndStatusName(Long stationId, String name) {
+    return vehicleRepository.findByStationIdAndVehicleStatusName(stationId, name);
+  }
+
+  public Vehicle updateVehicleStatusByName(Long id, String status) {
+    Vehicle vehicle = findById(id);
+    VehicleStatus vehicleStatus = vehicleStatusService.findByName(status);
+    if (vehicle != null && vehicleStatus != null && vehicle.getVehicleStatus() != vehicleStatus) {
+      vehicle.setVehicleStatus(vehicleStatus);
+      vehicleRepository.save(vehicle);
+    }
+    return vehicle;
+  }
+
+  public Vehicle updateVehicleStatusById(Long id, Integer statusId) {
+    Vehicle vehicle = findById(id);
+    VehicleStatus vehicleStatus = vehicleStatusService.findById(statusId);
+    if (vehicle != null && vehicleStatus != null && vehicle.getVehicleStatus() != vehicleStatus) {
+      vehicle.setVehicleStatus(vehicleStatus);
+      vehicleRepository.save(vehicle);
+    }
+    return vehicle;
+  }
+
+  public Vehicle updateVehicleStation(Long id, Long stationId) {
+    Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
+    if (vehicle != null) {
+      vehicle.setStationId(stationId);
+      vehicleRepository.save(vehicle);
+    }
+    return vehicle;
   }
 }
