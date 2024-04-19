@@ -1,6 +1,7 @@
 package com.zippy.vehicles.service.impl;
 
 import com.zippy.vehicles.service.interfaces.IVehicleStatusService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zippy.vehicles.repository.IVehicleStatusRepository;
 import jakarta.annotation.Nonnull;
@@ -9,12 +10,9 @@ import com.zippy.vehicles.model.VehicleStatus;
 import java.util.List;
 
 @Service
-public class VehicleSatusServiceImpl implements IVehicleStatusService {
-  private final IVehicleStatusRepository vehicleStatusRepository;
+public class VehicleStatusServiceImpl implements IVehicleStatusService {
+  private  IVehicleStatusRepository vehicleStatusRepository;
 
-  public VehicleSatusServiceImpl(IVehicleStatusRepository vehicleStatusRepository) {
-    this.vehicleStatusRepository = vehicleStatusRepository;
-  }
 
   public VehicleStatus findById(@Nonnull Integer id) {
     return vehicleStatusRepository.findById(id).orElse(null);
@@ -26,5 +24,10 @@ public class VehicleSatusServiceImpl implements IVehicleStatusService {
 
   public List<VehicleStatus> findAll() {
     return vehicleStatusRepository.findAll();
+  }
+
+  @Autowired
+  public void setVehicleStatusRepository(IVehicleStatusRepository vehicleStatusRepository) {
+    this.vehicleStatusRepository = vehicleStatusRepository;
   }
 }

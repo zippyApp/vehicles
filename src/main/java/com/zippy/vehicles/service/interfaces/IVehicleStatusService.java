@@ -5,9 +5,9 @@ import java.util.List;
 import com.zippy.vehicles.model.VehicleStatus;
 
 public interface IVehicleStatusService {
-  public VehicleStatus findById(Integer id);
+  VehicleStatus findById(Integer id);
 
-  public VehicleStatus findByName(String name);
+  VehicleStatus findByName(String name);
 
-  public List<VehicleStatus> findAll();
+  List<VehicleStatus> findAll();
 }

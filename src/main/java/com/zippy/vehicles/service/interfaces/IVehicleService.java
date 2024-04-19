@@ -4,22 +4,22 @@ import com.zippy.vehicles.model.Vehicle;
 import java.util.List;
 
 public interface IVehicleService {
-  public List<Vehicle> findAll();
+  List<Vehicle> findAll();
 
-  public Vehicle findById(Long id);
+  Vehicle findById(Long id);
 
-  public List<Vehicle> findByStationId(Long stationId);
+  List<Vehicle> findByStationId(Long stationId);
 
-  public List<Vehicle> findByVehicleStatusName(String name);
+  List<Vehicle> findByVehicleStatusName(String name);
 
-  public List<Vehicle> findByVehicleTypeName(String name);
+  List<Vehicle> findByVehicleTypeName(String name);
 
-  public List<Vehicle> findByVehicleStationIdAndStatusName(Long stationId, String name);
+  List<Vehicle> findByVehicleStationIdAndStatusName(Long stationId, String name);
 
-  public Vehicle updateVehicleStatusByName(Long id, String status);
+  Vehicle updateVehicleStatusByName(Long id, String status);
 
-  public Vehicle updateVehicleStatusById(Long id, Integer statusId);
+  Vehicle updateVehicleStatusById(Long id, Integer statusId);
 
-  public Vehicle updateVehicleStation(Long id, Long stationId);
+  Vehicle updateVehicleStation(Long id, Long stationId);
 
 }
