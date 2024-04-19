@@ -21,7 +21,7 @@ import com.zippy.vehicles.mappers.VehicleStatusMapper;
 import com.zippy.vehicles.mappers.VehicleTypeMapper;
 
 @RestController
-@RequestMapping("/api/vehicles")
+@RequestMapping("/api/v1/vehicles")
 public class VehicleController {
   private final IVehicleStatusService vehicleStatusService;
   private final IVehicleService vehicleService;
