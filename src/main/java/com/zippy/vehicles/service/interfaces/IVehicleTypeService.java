@@ -1,12 +1,12 @@
 package com.zippy.vehicles.service.interfaces;
 
-import java.util.List;
 import com.zippy.vehicles.model.VehicleType;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface IVehicleTypeService {
-  public VehicleType findById(Integer id);
+    Optional<VehicleType> findById(Integer id);
 
-  public VehicleType findByName(String name);
-
-  public List<VehicleType> findAll();
+    List<VehicleType> findAll();
 }
