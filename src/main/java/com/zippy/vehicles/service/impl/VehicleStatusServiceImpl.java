@@ -1,33 +1,36 @@
 package com.zippy.vehicles.service.impl;
 
+import com.zippy.vehicles.model.VehicleStatus;
+import com.zippy.vehicles.repository.IVehicleStatusRepository;
 import com.zippy.vehicles.service.interfaces.IVehicleStatusService;
+import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.zippy.vehicles.repository.IVehicleStatusRepository;
-import jakarta.annotation.Nonnull;
 
-import com.zippy.vehicles.model.VehicleStatus;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VehicleStatusServiceImpl implements IVehicleStatusService {
-  private  IVehicleStatusRepository vehicleStatusRepository;
+    private IVehicleStatusRepository vehicleStatusRepository;
 
+    @Override
+    public Optional<VehicleStatus> findById(@Nonnull Integer id) {
+        return vehicleStatusRepository.findById(id);
+    }
 
-  public VehicleStatus findById(@Nonnull Integer id) {
-    return vehicleStatusRepository.findById(id).orElse(null);
-  }
+    @Override
+    public List<VehicleStatus> findAll() {
+        return vehicleStatusRepository.findAll();
+    }
 
-  public VehicleStatus findByName(String name) {
-    return vehicleStatusRepository.findByName(name).orElse(null);
-  }
+    @Override
+    public Boolean existsById(Integer id) {
+        return vehicleStatusRepository.existsById(id);
+    }
 
-  public List<VehicleStatus> findAll() {
-    return vehicleStatusRepository.findAll();
-  }
-
-  @Autowired
-  public void setVehicleStatusRepository(IVehicleStatusRepository vehicleStatusRepository) {
-    this.vehicleStatusRepository = vehicleStatusRepository;
-  }
+    @Autowired
+    public void setVehicleStatusRepository(IVehicleStatusRepository vehicleStatusRepository) {
+        this.vehicleStatusRepository = vehicleStatusRepository;
+    }
 }

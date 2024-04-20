@@ -1,13 +1,14 @@
 package com.zippy.vehicles.service.interfaces;
 
-import java.util.List;
-
 import com.zippy.vehicles.model.VehicleStatus;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface IVehicleStatusService {
-  VehicleStatus findById(Integer id);
+    Optional<VehicleStatus> findById(Integer id);
 
-  VehicleStatus findByName(String name);
+    List<VehicleStatus> findAll();
 
-  List<VehicleStatus> findAll();
+    Boolean existsById(Integer id);
 }

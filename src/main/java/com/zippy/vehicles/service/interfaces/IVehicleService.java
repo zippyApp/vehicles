@@ -1,25 +1,20 @@
 package com.zippy.vehicles.service.interfaces;
 
 import com.zippy.vehicles.model.Vehicle;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface IVehicleService {
-  List<Vehicle> findAll();
+    List<Vehicle> findAll();
 
-  Vehicle findById(Long id);
+    Optional<Vehicle> findById(Long id);
 
-  List<Vehicle> findByStationId(Long stationId);
+    List<Vehicle> findByStationId(Long stationId);
 
-  List<Vehicle> findByVehicleStatusName(String name);
+    List<Vehicle> findByVehicleStatusId(int id);
 
-  List<Vehicle> findByVehicleTypeName(String name);
+    Optional<Vehicle> updateVehicleStatusId(Vehicle vehicle, Integer statusId);
 
-  List<Vehicle> findByVehicleStationIdAndStatusName(Long stationId, String name);
-
-  Vehicle updateVehicleStatusByName(Long id, String status);
-
-  Vehicle updateVehicleStatusById(Long id, Integer statusId);
-
-  Vehicle updateVehicleStation(Long id, Long stationId);
-
+    Vehicle updateVehicleStationId(Vehicle vehicle, Long stationId);
 }
