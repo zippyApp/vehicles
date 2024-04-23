@@ -31,6 +31,11 @@ public class VehicleServiceImpl implements IVehicleService {
         return vehicleRepository.findByStationId(stationId);
     }
 
+    @Override
+    public List<Vehicle> findByStationIdAndVehicleStatusId(Long stationId, int vehicleStatusId) {
+        return vehicleRepository.findByStationIdAndVehicleStatusId(stationId, vehicleStatusId);
+    }
+
 
     @Override
     public List<Vehicle> findByVehicleStatusId(int id) {

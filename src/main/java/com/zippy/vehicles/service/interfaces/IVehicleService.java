@@ -14,6 +14,8 @@ public interface IVehicleService {
 
     List<Vehicle> findByVehicleStatusId(int id);
 
+    List<Vehicle> findByStationIdAndVehicleStatusId(Long stationId, int vehicleStatusId);
+
     Optional<Vehicle> updateVehicleStatusId(Vehicle vehicle, Integer statusId);
 
     Vehicle updateVehicleStationId(Vehicle vehicle, Long stationId);

@@ -10,4 +10,5 @@ import java.util.List;
 public interface IVehicleRepository extends JpaRepository<Vehicle, Long> {
     List<Vehicle> findByStationId(Long stationId);
     List<Vehicle> findByVehicleStatusId(int id);
+    List<Vehicle> findByStationIdAndVehicleStatusId(Long stationId, int vehicleStatusId);
 }
