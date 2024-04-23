@@ -65,6 +65,13 @@ public class VehicleController {
                 .collect(Collectors.toList()));
     }
 
+    @GetMapping("/station/{stationId}/status/{vehicleStatusId}")
+    public ResponseEntity<List<VehicleDTO>> findByStationId(@PathVariable Long stationId, @PathVariable int vehicleStatusId) {
+        return ResponseEntity.ok(vehicleService.findByStationIdAndVehicleStatusId(stationId, vehicleStatusId).stream()
+                .map(vehicleMapper::vehicleToVehicleDTO)
+                .collect(Collectors.toList()));
+    }
+
     @Autowired
     public void setVehicleService(IVehicleService vehicleService) {
         this.vehicleService = vehicleService;
