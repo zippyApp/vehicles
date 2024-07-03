@@ -13,26 +13,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VehicleMapperTest {
 
-    private VehicleMapper vehicleMapper = Mappers.getMapper(VehicleMapper.class);
+    private final VehicleMapper vehicleMapper = Mappers.getMapper(VehicleMapper.class);
 
     private Vehicle vehicle;
     private VehicleDTO vehicleDTO;
 
     @BeforeEach
     public void setUp() {
-        VehicleType vehicleType = new VehicleType();
-        vehicleType.setName("BYKE");
 
-        VehicleStatus vehicleStatus = new VehicleStatus();
-        vehicleStatus.setName("Available");
-
-        vehicle = new Vehicle();
-        vehicle.setId(1L);
-        vehicle.setVehicleType(vehicleType);
-        vehicle.setVehicleStatus(vehicleStatus);
-        vehicle.setStationId(1L);
-        vehicle.setElectric(true);
-        vehicle.setBatteryLevel(80);
+        vehicle = Vehicle.builder()
+                .id(1L)
+                .vehicleType(VehicleType.builder()
+                        .id(1)
+                        .name("BYKE")
+                        .build())
+                .vehicleStatus(VehicleStatus.builder()
+                        .id(1)
+                        .name("Available")
+                        .build())
+                .stationId(1L)
+                .electric(true)
+                .batteryLevel(80)
+                .build();
 
         vehicleDTO = VehicleDTO.builder()
                 .id(1L)

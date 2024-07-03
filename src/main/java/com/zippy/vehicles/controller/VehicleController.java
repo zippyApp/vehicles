@@ -42,7 +42,7 @@ public class VehicleController {
     }
 
     @PutMapping("/{id}/station/{stationId}")
-    public ResponseEntity<VehicleDTO> updateVehicleStatus(@PathVariable Long id, @PathVariable Long stationId) {
+    public ResponseEntity<VehicleDTO> updateVehicleStation(@PathVariable Long id, @PathVariable Long stationId) {
         return vehicleService.findById(id)
                 .map(vehicle -> vehicleService.updateVehicleStationId(vehicle, stationId))
                 .map(vehicleMapper::vehicleToVehicleDTO)
